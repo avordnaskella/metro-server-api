@@ -25,3 +25,10 @@ jobs:
       env:
         APP_ENV: test
         JWT_SECRET: "test-secret-for-ci-only"
+
+    - name: Install Newman
+      run: npm install -g newman
+
+    - name: Run Postman tests against cloud server
+      run: |
+        newman run postman.json --env-var "baseUrl=https://metro-server-api.onrender.com/api/v1"
